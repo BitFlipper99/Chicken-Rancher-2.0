@@ -1,13 +1,27 @@
+var canvas = document.getElementById('canvas');
+if (!(!!canvas.getContext && canvas.getContext("2d"))) {
+		alert("Your browser doesn't support HTML5, please update to latest version");
+	}
+var 
+ctx = canvas.getContext("2d"),
+width,
+height;
 
-
-
+ 	
+function run(){
+	chick_sp.back[0].draw(ctx, 100, 100);
+	}
 
 function startGame(){
 
-	var ctx = document.getElementById('canvas');
-	ctx.style.width  = '1080px';
-	ctx.style.height = '720px';
+	width = window.innerWidth;
+	height = window.innerHeight;
 
+	canvas.width = width;
+	canvas.height = height;
+
+	initSprites();
+	
 
 	/*
             if (canvas.getContext) {
