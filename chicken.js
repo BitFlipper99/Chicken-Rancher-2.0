@@ -2,10 +2,22 @@ var canvas = document.getElementById('canvas');
 if (!(!!canvas.getContext && canvas.getContext("2d"))) {
 		alert("Your browser doesn't support HTML5, please update to latest version");
 	}
-var 
+var
+
 ctx = canvas.getContext("2d"),
 width,
-height;
+height,
+
+frames = 0,
+eggs = 0,
+currentstate,
+states = {
+	Splash: 0, mainGame : 1
+},
+
+// Game objects
+
+okbtn;
 
  	
 function run(){
