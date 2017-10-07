@@ -4,30 +4,53 @@ if (!(!!canvas.getContext && canvas.getContext("2d"))) {
 	}
 var
 
+chickens = new Array();
 ctx = canvas.getContext("2d"),
-width,
-height,
+width = 540,
+height = 360,
 
 frames = 0,
 eggs = 0,
-currentstate,
+currentstate = 0,
 states = {
 	Splash: 0, mainGame : 1
-},
+};
 
 // Game objects
 
-okbtn;
+function update(){
+	for (let i = 0; i < chickens.length; i++){
+		chickens[i].update();
+	}
+}
+
+function render(){
+	ctx.fillRect(0, 0, width, height);
+	for (let i = 0; i < chickens.length; i++){
+		chickens[i].render();
+	}
+
+
+
+}
 
  	
 function run(){
-	chick_sp.back[0].draw(ctx, 100, 100);
+	for (let i = 0; i < 10; i++)
+		chickens[i] = new Chicken(ctx, i*32, i*32, i%4);
+	var loop = function(){
+		update();
+		render();
+		window.requestAnimationFrame(loop, ctx);
+		frames++;
 	}
+	loop();
+}
 
 function startGame(){
 
-	width = window.innerWidth;
-	height = window.innerHeight;
+	//width = window.innerWidth;
+	//height = window.innerHeight;
 
 	canvas.width = width;
 	canvas.height = height;
