@@ -1,4 +1,5 @@
 var canvas = document.getElementById('canvas');
+canvas.className = "pixelated";
 if (!(!!canvas.getContext && canvas.getContext("2d"))) {
 		alert("Your browser doesn't support HTML5, please update to latest version");
 	}
@@ -6,8 +7,9 @@ var
 
 chickens = new Array();
 ctx = canvas.getContext("2d"),
+ctx.webkitImageSmoothingEnabled = ctx.imageSmoothingEnabled = ctx.mozImageSmoothingEnabled = ctx.oImageSmoothingEnabled = false;
 width = 1024,
-height = 560,
+height = 544,
 
 frames = 0,
 eggs = 0,
@@ -26,6 +28,12 @@ function update(){
 
 function render(){
 	ctx.fillRect(0, 0, width, height);
+	for(let i = 0; i < 544; i++){
+		grassSet.sand.mountain[4].draw(ctx, i%32*16*2, Math.floor(i/32)*16*2, 1);
+
+	}
+
+
 	for (let i = 0; i < chickens.length; i++){
 		chickens[i].render();
 	}
@@ -33,7 +41,6 @@ function render(){
 
 
 }
-
  	
 function run(){
 	for (let i = 0; i < 100; i++)
@@ -48,9 +55,6 @@ function run(){
 }
 
 function startGame(){
-
-	//width = window.innerWidth;
-	//height = window.innerHeight;
 
 	canvas.width = width;
 	canvas.height = height;
