@@ -6,8 +6,8 @@ var
 
 chickens = new Array();
 ctx = canvas.getContext("2d"),
-width = 540,
-height = 360,
+width = 1024,
+height = 560,
 
 frames = 0,
 eggs = 0,
@@ -36,8 +36,8 @@ function render(){
 
  	
 function run(){
-	for (let i = 0; i < 10; i++)
-		chickens[i] = new Chicken(ctx, i*32, i*32, i%4);
+	for (let i = 0; i < 100; i++)
+		chickens[i] = new Chicken(ctx, Math.random()*width-10, Math.random()*height-10, i%4);
 	var loop = function(){
 		update();
 		render();
