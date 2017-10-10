@@ -46,7 +46,7 @@ function Sprite(img, x, y, width, height){
 	this.width = width;
 	this.height = height;
 
-	this.draw = function(ctx, x, y, scale){
+	this.draw = function(ctx, x, y, scale = 1){
 		ctx.drawImage(this.img, this.x, this.y, this.width, this.height,
 		x, y, this.width*scale, this.height*scale);
 	}
@@ -74,9 +74,9 @@ function Chicken(ctx, x, y, dir){
 	this.currFrame = 0;
 
 	this.draw = function(){
-		let modFrame = (this.currFrame === 3) ? 1 : this.currFrame;
+		let modFrame = (this.currFrame === 3) ? 2 : this.currFrame;
 		this.animArr[this.dir][modFrame].draw(this.ctx, this.x, this.y, 1);
-		if (this.state === 1 && frames%14 === 0	){
+		if (this.state === 2 && frames%14 === 0	){
 			if (this.currFrame === 3){
 				this.currFrame = 0;
 				this.state = 0;
@@ -132,66 +132,66 @@ function initSpriteSheet(src){
 	//3 by 3 bricks
 	for (let i = 0; i < 9; i++){
 		//GrassSand
-		grassSet.sand.grassy.push(new Sprite(src, 1 + i%3*17, 1 + Math.floor(i/3)*17, 16, 16));
+		grassSet.sand.grassy.push(new Sprite(src, 2 + i%3*34, 2 + Math.floor(i/3)*34, 32, 32));
 		//MountainSand
-		grassSet.sand.mountain.push(new Sprite(src, 52 + i%3*17, 103 + Math.floor(i/3)*17, 16, 16));
+		grassSet.sand.mountain.push(new Sprite(src, 104 + i%3*34, 206 + Math.floor(i/3)*34, 32, 32));
 
 		//LiteGrass
-		grassSet.grass.lite.push(new Sprite(src, 1 + i%3*17, 52 + Math.floor(i/3)*17, 16, 16));
+		grassSet.grass.lite.push(new Sprite(src, 2 + i%3*34, 104 + Math.floor(i/3)*34, 32, 32));
 		//MountainGrass
-		grassSet.grass.mountain.push(new Sprite(src, 52 + i%3*17, 103 + Math.floor(i/3)*17, 16, 16));
+		grassSet.grass.mountain.push(new Sprite(src, 104 + i%3*34, 206 + Math.floor(i/3)*34, 32, 32));
 		
 		//mountainWater
-		grassSet.water.grassy.push(new Sprite(src, 103 + i%3*17, 137 + Math.floor(i/3)*17, 16, 16));
+		grassSet.water.grassy.push(new Sprite(src, 206 + i%3*34, 274 + Math.floor(i/3)*34, 32, 32));
 	}
 	//2 by 2 bricks
 	for (let i = 0; i < 4; i++){	
 		//SandyGrass
-		grassSet.sand.grassy.push(new Sprite(src, 52, + i%2*17, 1 + Math.floor(i/2)*17, 16, 16));
+		grassSet.sand.grassy.push(new Sprite(src, 104, + i%2*34, 2 + Math.floor(i/2)*34, 32, 32));
 		//SingleCornerMountainSand
-		grassSet.sand.cornered.push(new Sprite(src, 120, + i%2*17, 69 + Math.floor(i/2)*17, 16, 16));
+		grassSet.sand.cornered.push(new Sprite(src, 240, + i%2*34, 138 + Math.floor(i/2)*34, 32, 32));
 		//DoubleCornerMountainSand
-		grassSet.sand.cornered.push(new Sprite(src, 120, + i%2*17, 103 + Math.floor(i/2)*17, 16, 16));
+		grassSet.sand.cornered.push(new Sprite(src, 240, + i%2*34, 206 + Math.floor(i/2)*34, 32, 32));
 
 
 		//MoreLiteGrass
-		grassSet.grass.lite.push(new Sprite(src, 52 + i%2*17, 35 + Math.floor(i/2)*17, 16, 16));
+		grassSet.grass.lite.push(new Sprite(src, 104 + i%2*34, 35 + Math.floor(i/2)*34, 32, 32));
 		//SingleCornerMountainGrass
-		grassSet.grass.cornered.push(new Sprite(src, 52 + i%2*17, 69 + Math.floor(i/2)*17, 16, 16));
+		grassSet.grass.cornered.push(new Sprite(src, 104 + i%2*34, 138 + Math.floor(i/2)*34, 32, 32));
 		//DoubleCornerMountainGrass
-		grassSet.grass.cornered.push(new Sprite(src, 69 + i%2*17, 69 + Math.floor(i/2)*17, 16, 16));
+		grassSet.grass.cornered.push(new Sprite(src, 138 + i%2*34, 138 + Math.floor(i/2)*34, 32, 32));
 
 		//waterGrassCorner
-		grassSet.water.grassy.push(new Sprite(src, 154 + i%2*17, 120 + Math.floor(i/2)*17, 16, 16));
+		grassSet.water.grassy.push(new Sprite(src, 308 + i%2*34, 240 + Math.floor(i/2)*34, 32, 32));
 
-	//4 by 1 bricks
+	//4 by 2 bricks
 		//grassy foilage
-		grassSet.grass.foilage.push(new Sprite(src, 86 + i*17, 1, 16, 16));
+		grassSet.grass.foilage.push(new Sprite(src, 86 + i*34, 1, 32, 32));
 		//lite grassy foilage
-		grassSet.grass.foilage.push(new Sprite(src, 86 + i*17, 18, 16, 16));
+		grassSet.grass.foilage.push(new Sprite(src, 86 + i*34, 18, 32, 32));
 
 		//sand foilage
-		grassSet.sand.foilage.push(new Sprite(src, 86 + i*17, 35, 16, 16));
+		grassSet.sand.foilage.push(new Sprite(src, 86 + i*34, 35, 32, 32));
 
 	}
 	//3 by 2 bricks
 	for (let i = 0; i < 6; i++){
 		//Grass Mountain Extras
-		grassSet.grass.mountain.push(new Sprite(src, 1 + i%3*17, 154 + Math.floor(i/3)*17, 16, 16));
+		grassSet.grass.mountain.push(new Sprite(src, 2 + i%3*34, 308 + Math.floor(i/3)*34, 32, 32));
 		//Sand Mountain Extras
-		grassSet.sand.mountain.push(new Sprite(src, 52 + i%3*17, 154 + Math.floor(i/3)*17, 16, 16));
+		grassSet.sand.mountain.push(new Sprite(src, 104 + i%3*34, 308 + Math.floor(i/3)*34, 32, 32));
 
 	}
 	for (let i = 0; i < 2; i++){
-		grassSet.grass.cornered.push(new Sprite(src, 86 + i*17, 52, 16, 16));
-		grassSet.sand.cornered.push(new Sprite(src, 86 + i*17, 52, 16, 16));
+		grassSet.grass.cornered.push(new Sprite(src, 86 + i*34, 104, 32, 32));
+		grassSet.sand.cornered.push(new Sprite(src, 86 + i*34, 104, 32, 32));
 
-		grassSet.water.foilage.push(new Sprite(src, 154, 154 + i*17, 16, 16));
+		grassSet.water.foilage.push(new Sprite(src, 308, 308 + i*34, 32, 32));
 	}
 
 	//misc sprites
-		grassSet.sand.foilage.push(new Sprite(src, 154, 35, 16, 16));
-		grassSet.water.foilage.push(new Sprite(src, 103, 120, 16, 16));
+		grassSet.sand.foilage.push(new Sprite(src, 308, 35, 32, 32));
+		grassSet.water.foilage.push(new Sprite(src, 206, 240, 32, 32));
 
 
 
@@ -212,5 +212,5 @@ function initSprites(){
 		initSpriteSheet(this);
 		run();
 	}
-	img.src = "res/im/tilesheet.png";
+	img.src = "res/im/scaled_tilesheet.png";
 }

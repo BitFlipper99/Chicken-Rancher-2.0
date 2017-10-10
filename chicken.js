@@ -29,9 +29,8 @@ function update(){
 function render(){
 	ctx.fillRect(0, 0, width, height);
 	for(let i = 0; i < 544; i++){
-		grassSet.sand.mountain[4].draw(ctx, i%32*16*2, Math.floor(i/32)*16*2, 1);
-
-	}
+		grassSet.sand.mountain[4].draw(ctx, i%32*16*2, Math.floor(i/32)*16*2);
+ }
 
 
 	for (let i = 0; i < chickens.length; i++){
