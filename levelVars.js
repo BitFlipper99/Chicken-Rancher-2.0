@@ -1,7 +1,6 @@
 
 var
 
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 /*
 	---Key---
 	0: grass
@@ -53,10 +52,44 @@ level2_d = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 ];
 
+
+
 function Level(data){
-	this.data = data;
+	this.originalData = data;
+	//This function should convert a map to an indexed sprite map.
+	this.convertData = function(){
+		this.c_Data = new Array(this.originalData.length)
+		for (let i = 0; i < this.originalData.length; i++){
+			this.c_Data[i] = new Array(this.originalData[i].length);
+		}
+		for (let y = 0; y < data.length; y++){
+			for (let x = 0; x < data[y].length; x++){
+
+				//TODO:
+				//Implement a function that converts the original data into indexes
 
 
+
+
+
+
+
+				this.c_Data[y][x] = this.originalData[y][x] + 3;
+			}
+		}
+	}
+
+
+	this.render = function(){
+		for (let y = 0; y < this.c_Data.length; y++){
+			for (let x = 0; x < this.c_Data[y].length; x++){
+				console.log("test");
+				grassSet.scale[1][this.c_Data[y][x]].draw(ctx, x*32, y*32);
+			}
+		}
+	}
+
+	/*
 	this.randomize = function(){
 		for (let i = 0; i < data[0].length*data.length; i++){
 			if (Math.random() < 0.15){
@@ -66,7 +99,8 @@ function Level(data){
 		}
 
 	}
-
+	
+	
 	this.render = function(){
 		var currRow,
 		currCol,
@@ -157,4 +191,5 @@ function Level(data){
 
 		}
 	}
+	*/
 }

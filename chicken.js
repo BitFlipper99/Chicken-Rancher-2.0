@@ -7,6 +7,8 @@ var
 
 currLevel,
 level1 = new Level(level1_d);
+level1.convertData();
+
 chickens = new Array(),
 ctx = canvas.getContext("2d"),
 ctx.webkitImageSmoothingEnabled = ctx.imageSmoothingEnabled = ctx.mozImageSmoothingEnabled = ctx.oImageSmoothingEnabled = false;
@@ -19,9 +21,6 @@ currentstate = 0,
 states = {
 	Splash: 0, mainGame : 1
 };
-
-level1.randomize();
-
 // Game objects
 
 function update(){

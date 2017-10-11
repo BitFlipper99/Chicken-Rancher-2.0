@@ -8,9 +8,9 @@ chick_sp = {
 },
 
 grassSet = {
-	scale: new Array(3)
+	scale: [[], [], []]
 };
-
+/*
 for (let i = 0; i < 3; i++){
 	grassSet.scale[i] = ({
 		sand: {
@@ -34,7 +34,7 @@ for (let i = 0; i < 3; i++){
 		}
 	});
 }
-
+*/
 /*
 function Sprite(copy){
 	this.img = copy.img;
@@ -133,7 +133,16 @@ function initChicken(src){
 		}
 	}
 }
+function initSpriteSheet(src, sc){
+	let ind = Math.log(sc) / Math.log(2);
+	for (let i = 0; i < 121; i++){
+		grassSet.scale[ind].push(new Sprite(src, (1 + (i%11)*17)*sc, (1 + Math.floor(i/11)*17)*sc, 16*sc, 16*sc));
+	}
 
+
+}
+
+/*
 function initSpriteSheet(src, sc){
 	let ind = (sc === 4) ? 2 : sc - 1;
 	//3 by 3 bricks
@@ -202,35 +211,28 @@ function initSpriteSheet(src, sc){
 	//misc sprites
 		grassSet.scale[ind].sand.foilage.push(new Sprite(src, 154*sc, 35*sc, 16*sc, 16*sc));
 		grassSet.scale[ind].water.foilage.push(new Sprite(src, 103*sc, 120*sc, 16*sc, 16*sc));
-
-
-
 }
-
+*/
 
 function initSprites(){
+
+	var imgPath = "res/im/";
+	
+	var imgNames = ["tilesheet.png", "scaled_tilesheet.png", "4xscaled_tilesheet.png"];
+	for (let i = 0; i < 3; i++){
+		img = new Image();
+		img.onload = function() {
+			initSpriteSheet(this, Math.pow(2, i));
+		}
+		img.src = imgPath + imgNames[i];
+	}
+
+
+
 	var img = new Image();
 	img.onload = function() {
 		initChicken(this);
-	}
-	img.src = "res/im/chicken_eat.png";
-
-	img = new Image();
-	img.onload = function() {
-		initSpriteSheet(this, 1);
-	}
-	img.src = "res/im/tilesheet.png";
-
-	img = new Image();
-	img.onload = function() {
-		initSpriteSheet(this, 2);
-	}
-	img.src = "res/im/scaled_tilesheet.png";
-
-	img = new Image();
-	img.onload = function() {
-		initSpriteSheet(this, 4);
 		run();
 	}
-	img.src = "res/im/4xscaled_tilesheet.png";
+	img.src = imgPath + "chicken_eat.png";
 }
