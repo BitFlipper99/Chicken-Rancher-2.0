@@ -5,7 +5,9 @@ if (!(!!canvas.getContext && canvas.getContext("2d"))) {
 	}
 var
 
-chickens = new Array();
+currLevel,
+level1 = new Level(level1_d);
+chickens = new Array(),
 ctx = canvas.getContext("2d"),
 ctx.webkitImageSmoothingEnabled = ctx.imageSmoothingEnabled = ctx.mozImageSmoothingEnabled = ctx.oImageSmoothingEnabled = false;
 width = 1024,
@@ -18,6 +20,8 @@ states = {
 	Splash: 0, mainGame : 1
 };
 
+level1.randomize();
+
 // Game objects
 
 function update(){
@@ -28,11 +32,8 @@ function update(){
 
 function render(){
 	ctx.fillRect(0, 0, width, height);
-	for(let i = 0; i < 144; i++){	
-		grassSet.scale[2].grass.lite[4].draw(ctx, i%16*64, Math.floor(i/16)*64);
- }
-
-
+	currLevel.render();
+ 	
 	for (let i = 0; i < chickens.length; i++){
 		chickens[i].render();
 	}
@@ -57,6 +58,8 @@ function startGame(){
 
 	canvas.width = width;
 	canvas.height = height;
+		currLevel = level1;
+
 
 	initSprites();
 	

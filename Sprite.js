@@ -174,13 +174,16 @@ function initSpriteSheet(src, sc){
 	//4 by 1 bricks
 		//grassy foilage
 		grassSet.scale[ind].grass.foilage.push(new Sprite(src, (86 + i*17)*sc, 1*sc, 16*sc, 16*sc));
-		//lite grassy foilage
-		grassSet.scale[ind].grass.foilage.push(new Sprite(src, (86 + i*17)*sc, 18*sc, 16*sc, 16*sc));
-
 		//sand foilage
 		grassSet.scale[ind].sand.foilage.push(new Sprite(src, (86 + i*17)*sc, 35*sc, 16*sc, 16*sc));
 
 	}
+	for (let i = 0; i < 4; i++){
+		//lite grassy foilage
+		grassSet.scale[ind].grass.foilage.push(new Sprite(src, (86 + i*17)*sc, 18*sc, 16*sc, 16*sc));
+
+	}
+
 	//3 by 2 bricks
 	for (let i = 0; i < 6; i++){
 		//Grass Mountain Extras 
@@ -215,14 +218,12 @@ function initSprites(){
 	img = new Image();
 	img.onload = function() {
 		initSpriteSheet(this, 1);
-		run();
 	}
 	img.src = "res/im/tilesheet.png";
 
 	img = new Image();
 	img.onload = function() {
 		initSpriteSheet(this, 2);
-		run();
 	}
 	img.src = "res/im/scaled_tilesheet.png";
 
