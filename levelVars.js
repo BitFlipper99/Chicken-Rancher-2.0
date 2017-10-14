@@ -76,25 +76,46 @@ function calcDir(surr, org){
 		case 6:
 			return 10;
 		case 7:
-			return ;
+			return 7;
 		case 8:
-			return ;
+			return 5;
 		case 9:
-			return ;
+			return 5;
 		case 10:
-			return ;
+			return 8;
 		case 11:
-			return ;
+			return 8;
 		case 12:
-			return ;
+			return 5;
 		case 13:
-			return ;
+			return 5;
 		case 14:
-			return ;
+			return 8;
 		case 15:
-			return ;
+			return 8;
 		case 16:
+			return 3;
+		case 17:
 			return ;
+		case 18:
+			return ;
+		case 19:
+			return ;
+		case 20:
+			return ;
+		case 21:
+			return ;
+		case 22:
+			return ;
+		case 23:
+			return ;
+		case 24:
+			return ;
+		case 25:
+			return ;
+		case 26:
+			return ;
+			
 		
 	}
 
