@@ -60,6 +60,8 @@ function calcDir(surr, org){
 		if (surr[i] === org) eightBool++;
 	}
 	//TEMP SWITCH CASE
+
+	return Math.floor(Math.random()*100);
 	switch(eightBool){ //me trying to figure out what sprite should display given every possibility (obviously I will make this a function once i figure it out)
 		case 0:
 			return 4;
@@ -115,6 +117,28 @@ function calcDir(surr, org){
 			return ;
 		case 26:
 			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		case 26:
+			return ;
+		
+
 			
 		
 	}
@@ -135,19 +159,21 @@ function Level(data){
 		for (let i = 0; i < this.originalData.length; i++){
 			this.c_Data[i] = new Array(this.originalData[i].length);
 		}
-		for (let y = 0; y < data.length; y++){
-			for (let x = 0; x < data[y].length; x++){
+		for (let y = 0; y < this.originalData.length; y++){
+			for (let x = 0; x < this.originalData[y].length; x++){
 				switch(this.originalData[y][x]){
 					case 0: this.c_Data[y][x] = 12;
-						
+						break;
 					case 1: this.c_Data[y][x] = 45;
-						
+						break; 
 					case 2: this.c_Data[y][x] = 27;
+						break;
 				}
 				let surrounding = [];
 				for (let i = 0; i < 8; i++){
-					if (this.originalData[y+yArr[i]][x+xArr[i]] !== 'undefined') surrounding[i] = this.originalData[y+yArr[i]][x+xArr[i]];
-					else {surrounding[i] = this.originalData[y+yArr[i]][x+xArr[i]];}
+					let boolCheck = (y + yArr[i] >= 0 && x+ xArr[i] >= 0 &&  this.originalData[y+yArr[i]] !== undefined && this.originalData[y+yArr[i]][x+xArr[i]] !== undefined);
+					if (boolCheck) surrounding[i] = this.originalData[y+yArr[i]][x+xArr[i]];
+					else {surrounding[i] = this.originalData[y][x];}
 				}
 
 			}
