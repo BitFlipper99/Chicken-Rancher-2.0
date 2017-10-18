@@ -61,7 +61,7 @@ function calcDir(surr, org){
 	}
 	//TEMP SWITCH CASE
 
-	return Math.floor(Math.random()*100);
+	return Math.floor(Math.random()*10);
 	switch(eightBool){ //me trying to figure out what sprite should display given every possibility (obviously I will make this a function once i figure it out)
 		case 0:
 			return 4;
@@ -98,44 +98,44 @@ function calcDir(surr, org){
 		case 16:
 			return 3;
 		case 17:
-			return ;
+			return 2;
 		case 18:
-			return ;
+			return 4;
 		case 19:
 			return ;
 		case 20:
-			return ;
+			return 4;
 		case 21:
-			return ;
+			return 4;
 		case 22:
-			return ;
+			return 4;
 		case 23:
-			return ;
+			return 4;
 		case 24:
-			return ;
+			return 4;
 		case 25:
-			return ;
+			return 4;
 		case 26:
+			return 4;
+		case 27:
+			return 4;
+		case 28:
+			return 4;
+		case 29:
+			return 4;
+		case 30:
+			return 4;
+		case 31:
+			return 4;
+		case 32:
+			return 4;
+		case 33:
+			return 4;
+		case 34:
 			return ;
-		case 26:
+		case 35:
 			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
-			return ;
-		case 26:
+		case 36:
 			return ;
 		
 
@@ -161,20 +161,24 @@ function Level(data){
 		}
 		for (let y = 0; y < this.originalData.length; y++){
 			for (let x = 0; x < this.originalData[y].length; x++){
-				switch(this.originalData[y][x]){
-					case 0: this.c_Data[y][x] = 12;
-						break;
-					case 1: this.c_Data[y][x] = 45;
-						break; 
-					case 2: this.c_Data[y][x] = 27;
-						break;
-				}
+
 				let surrounding = [];
 				for (let i = 0; i < 8; i++){
 					let boolCheck = (y + yArr[i] >= 0 && x+ xArr[i] >= 0 &&  this.originalData[y+yArr[i]] !== undefined && this.originalData[y+yArr[i]][x+xArr[i]] !== undefined);
 					if (boolCheck) surrounding[i] = this.originalData[y+yArr[i]][x+xArr[i]];
 					else {surrounding[i] = this.originalData[y][x];}
 				}
+				let num = calcDir(surrounding, this.originalData[y][x]);
+
+				switch(this.originalData[y][x]){
+					case 0: this.c_Data[y][x] = (num < 9) ? 11 * Math.floor(num/3) + num%3 : 3 + num%9%2 + 11 * Math.floor(num%9/2) 
+						break;
+					case 1: this.c_Data[y][x] = 45;
+						break; 
+					case 2: this.c_Data[y][x] = 27;
+						break;
+				}
+				
 
 			}
 		}
